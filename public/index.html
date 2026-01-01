@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>War Royale - Login</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="auth-container">
+            <h1>⚔️ War Royale</h1>
+            
+            <div class="auth-tabs">
+                <button class="tab-btn active" data-tab="login">Login</button>
+                <button class="tab-btn" data-tab="register">Registrar</button>
+            </div>
+
+            <div id="login-form" class="auth-form active">
+                <input type="text" id="login-username" placeholder="Username" required>
+                <input type="password" id="login-password" placeholder="Password" required>
+                <button onclick="handleLogin()">Entrar</button>
+                <p id="login-error" class="error-message"></p>
+            </div>
+
+            <div id="register-form" class="auth-form">
+                <input type="text" id="register-username" placeholder="Username" required>
+                <input type="password" id="register-password" placeholder="Password (mín. 6 caracteres)" required>
+                <button onclick="handleRegister()">Criar Conta</button>
+                <p id="register-error" class="error-message"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>
+

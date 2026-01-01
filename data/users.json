@@ -1,0 +1,44 @@
+[
+  {
+    "id": "1767146259905",
+    "username": "brunohashimoto",
+    "password": "$2a$10$lnDfC..9N/WUeIhLwaJ04.Z2KYOrzd2C.0gXVNrnEjxsKBcIG6uEa",
+    "createdAt": "2025-12-31T01:57:39.905Z"
+  },
+  {
+    "id": "1767146858841",
+    "username": "bruno",
+    "password": "$2a$10$Q7j3ge06OuIU83VNJzXvW.IS802xRq0x24x.xy4.3ZzyRf.NvHW6.",
+    "createdAt": "2025-12-31T02:07:38.841Z"
+  },
+  {
+    "id": "1767146867070",
+    "username": "Gabmayumi",
+    "password": "$2a$10$nZHXd7hSzVzpM7N8dYMdN.YHsDg1d2piy9awOZV8OyDQtI20l19QK",
+    "createdAt": "2025-12-31T02:07:47.070Z"
+  },
+  {
+    "id": "1767187245276",
+    "username": "Ragnar",
+    "password": "$2a$10$aoQrzH2diJnBYdGx64SpOer2e9cANMb8gZONOYUxIIvhzo4tZ.43S",
+    "createdAt": "2025-12-31T13:20:45.276Z"
+  },
+  {
+    "id": "1767188713195",
+    "username": "Ragnarr",
+    "password": "$2a$10$DOnmYSxniojprp8E1DYgned2SZFd6Wd9WCfqU1s9xJnvbSxMoOLvG",
+    "createdAt": "2025-12-31T13:45:13.196Z"
+  },
+  {
+    "id": "1767220254156",
+    "username": "Vadia",
+    "password": "$2a$10$tyR2Pk/uimNJcYIW3d9rt./OlbJTiW6i9gOzPWkXwTxtALBVvMOZC",
+    "createdAt": "2025-12-31T22:30:54.156Z"
+  },
+  {
+    "id": "1767220283894",
+    "username": "ragnarlorthbruck",
+    "password": "$2a$10$QnsqgA1Z/5HQN1ssSa8ugOOAMz5fYOYnSHCtiWdzt0pTsbf9ytadC",
+    "createdAt": "2025-12-31T22:31:23.894Z"
+  }
+]

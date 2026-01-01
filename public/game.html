@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>War Royale - Jogo</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-area">
+            <!-- Barra superior com controles -->
+            <div id="top-controls-bar" class="top-controls-bar" style="display: none;">
+                <button id="ready-btn-top" onclick="setPlayerReady()" class="ready-btn-top">
+                    ▶ Estou Pronto!
+                </button>
+                <div class="top-controls-right">
+                    <button id="shop-btn" onclick="openShopModal()" class="control-btn shop-btn">
+                        🏪
+                    </button>
+                    <button id="menu-btn" onclick="openGameMenu()" class="control-btn menu-btn">
+                        ☰
+                    </button>
+                </div>
+            </div>
+            
+            <canvas id="game-canvas" width="1000" height="700" style="max-width: 100%; height: auto;"></canvas>
+            
+            <!-- Barra de comandos táticos (mobile - abaixo do canvas) -->
+            <div id="tactical-commands-bar" class="tactical-commands-bar" style="display: none;">
+                <div class="tactical-commands-container">
+                    <button class="tactical-btn" data-command="advance" onclick="sendTacticalCommand('advance')">
+                        <span class="tactical-icon">⬆️</span>
+                        <span class="tactical-label">Avançar</span>
+                    </button>
+                    <button class="tactical-btn" data-command="hold" onclick="sendTacticalCommand('hold')">
+                        <span class="tactical-icon">⏸️</span>
+                        <span class="tactical-label">Segurar</span>
+                    </button>
+                    <button class="tactical-btn" data-command="retreat" onclick="sendTacticalCommand('retreat')">
+                        <span class="tactical-icon">⬇️</span>
+                        <span class="tactical-label">Recuar</span>
+                    </button>
+                    <button class="tactical-btn" data-command="stop" onclick="sendTacticalCommand('stop')">
+                        <span class="tactical-icon">🛑</span>
+                        <span class="tactical-label">Parar</span>
+                    </button>
+                    <button class="tactical-btn" data-command="defend" onclick="sendTacticalCommand('defend')">
+                        <span class="tactical-icon">🛡️</span>
+                        <span class="tactical-label">Defender</span>
+                    </button>
+                    <button class="tactical-btn" data-command="focus" onclick="sendTacticalCommand('focus')">
+                        <span class="tactical-icon">🎯</span>
+                        <span class="tactical-label">Focar</span>
+                    </button>
+                    <button class="tactical-btn" data-command="protect" onclick="sendTacticalCommand('protect')">
+                        <span class="tactical-icon">🛡️</span>
+                        <span class="tactical-label">Proteger</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Inventário de Tropas (abaixo do canvas) -->
+        <div id="troop-inventory-sidebar" class="troop-inventory-sidebar" style="display: none;">
+            <h3>📦 Seu Inventário</h3>
+            <div id="troop-inventory" class="troop-inventory-grid-sidebar">
+                <!-- Tropas compradas aparecerão aqui -->
+            </div>
+        </div>
+        
+        <!-- Modal Principal do Jogo (Menu, Preparação, Comandos, etc) -->
+        <div id="game-menu-modal" class="modal" style="display: block;">
+            <div class="modal-content game-menu-content" style="max-width: 90%; max-height: 90vh; overflow-y: auto;">
+                <div class="modal-header">
+                    <h2 id="menu-title">🎮 Menu do Jogo</h2>
+                    <button class="close-modal" onclick="closeGameMenu()">&times;</button>
+                </div>
+                <div class="modal-body" id="menu-body">
+                    <!-- Conteúdo será preenchido dinamicamente -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- Modal de Loja -->
+        <div id="shop-modal" class="modal" style="display: none;">
+            <div class="modal-content shop-modal-content">
+                <div class="modal-header">
+                    <h2>🏪 Loja de Tropas</h2>
+                    <button class="close-modal" onclick="closeShopModal()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="shop-grid">
+                        <div class="shop-item" onclick="buyTroop('melee', 5)">
+                            <div class="troop-image melee-troop">
+                                <div class="troop-icon">⚔️</div>
+                            </div>
+                            <div class="troop-info">
+                                <h3>Guerreiros</h3>
+                                <p class="troop-description">Tropas corpo a corpo</p>
+                                <p class="troop-stats">Dano: 1 | HP: 20 | Velocidade: 2.5</p>
+                                <div class="troop-price">
+                                    <span class="price">50</span>
+                                    <span class="currency">💰</span>
+                                </div>
+                                <p class="troop-quantity">5 unidades</p>
+                            </div>
+                        </div>
+                        <div class="shop-item" onclick="buyTroop('ranged', 5)">
+                            <div class="troop-image ranged-troop">
+                                <div class="troop-icon">🏹</div>
+                            </div>
+                            <div class="troop-info">
+                                <h3>Arqueiros</h3>
+                                <p class="troop-description">Tropas à distância</p>
+                                <p class="troop-stats">Dano: 1 | HP: 20 | Alcance: 120px</p>
+                                <div class="troop-price">
+                                    <span class="price">50</span>
+                                    <span class="currency">💰</span>
+                                </div>
+                                <p class="troop-quantity">5 unidades</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/spriteManager.js"></script>
+    <script src="js/lobby.js"></script>
+    <script src="js/lobbyRoom.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>
